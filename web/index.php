@@ -39,14 +39,17 @@ $app->get('/api/favorites', function () use ($app) {
     $favorites = json_decode($buzz->getContent());
     
     $resp = array();
-    foreach ($favorites as $tweet) {
-        $obj            = new \stdClass();
-        $obj->timestamp = strtotime($tweet->created_at);
-        $obj->user      = $tweet->user->screen_name;
-        $obj->avatar    = $tweet->user->profile_image_url;
-        $obj->content   = $tweet->text;
-        
-        $resp[] = $obj;
+    if (!isset($favorites->errors)) {
+        // Si no hubo errores entonces itero entre los tweets favoritos.
+        foreach ($favorites as $tweet) {
+            $obj            = new \stdClass();
+            $obj->timestamp = strtotime($tweet->created_at);
+            $obj->user      = $tweet->user->screen_name;
+            $obj->avatar    = $tweet->user->profile_image_url;
+            $obj->content   = $tweet->text;
+            
+            $resp[] = $obj;
+        }
     }
     
     return new Response(json_encode($resp));
