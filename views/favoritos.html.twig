@@ -1,0 +1,17 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Favoritos{% endblock %}
+
+{% block content -%}
+    <h1>Tweets Favoritos</h1>
+    <div class="center-block">
+    <table class="table table-hover">
+    {% for favorite in favorites %}
+        <tr>
+            <td class="col-md-1 text-center"><a href="https://twitter.com/{{ favorite.user }}" target="_blank"><img src="{{ favorite.avatar }}"></a><br />{{ favorite.timestamp | date('d/m/Y H:i:s') }}</td>
+            <td>{{ favorite.content }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    </div>
+{% endblock %}
