@@ -28,3 +28,10 @@ $app['endroid_twitter.access_token']        = '';
 $app['endroid_twitter.access_token_secret'] = '';
 $app['endroid_twitter.api_url']             = 'https://api.twitter.com/1.1/';
 ~~~~
+
+
+### Testing.
+
+~~~~
+$ phpunit tests/API.php
+~~~~
